@@ -1,0 +1,50 @@
+@model EncryptionMvcApp.Models.EncryptionModel
+
+@{
+    ViewData["Title"] = "Szyfrowanie i Deszyfrowanie Tekstu";
+}
+
+<h2>Szyfrowanie i Deszyfrowanie Tekstu</h2>
+
+<!-- Formularz szyfrowania -->
+<form asp-action="Encrypt" method="post">
+    @Html.AntiForgeryToken()
+    <div class="form-group">
+        <label for="originalText">Wprowadź tekst do zaszyfrowania:</label>
+        <input type="text" class="form-control" id="originalText" name="originalText" required />
+    </div>
+    <button type="submit" class="btn btn-primary">Zaszyfruj</button>
+</form>
+
+@if (Model != null && !string.IsNullOrEmpty(Model.EncryptedText))
+{
+    <hr />
+    <h3>Wyniki szyfrowania:</h3>
+    <p><strong>Tekst oryginalny:</strong> @Model.OriginalText</p>
+    <p><strong>Zaszyfrowany:</strong> @Model.EncryptedText</p>
+}
+
+<hr />
+
+<!-- Formularz deszyfrowania -->
+<form asp-action="Decrypt" method="post">
+    @Html.AntiForgeryToken()
+    <div class="form-group">
+        <label for="encryptedText">Wprowadź tekst do odszyfrowania:</label>
+        <input type="text" class="form-control" id="encryptedText" name="encryptedText" required />
+    </div>
+    <button type="submit" class="btn btn-secondary mt-5">Deszyfruj</button>
+</form>
+
+@if (Model != null && !string.IsNullOrEmpty(Model.DecryptedText))
+{
+    <hr />
+    <h3>Wyniki deszyfrowania:</h3>
+    <p><strong>Zaszyfrowany tekst:</strong> @Model.EncryptedText</p>
+    <p><strong>Odszyfrowany:</strong> @Model.DecryptedText</p>
+}
+
+@if (ViewBag.Error != null)
+{
+    <div class="alert alert-danger">@ViewBag.Error</div>
+}
