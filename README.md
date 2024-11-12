@@ -1,7 +1,6 @@
 ## Table of contents
-* [General info](#general-info)
-* [Technologies](#technologies)
-* [Setup](#setup)
+* Szyfr Cezara (#general-info)
+* Szyfr Polibusza (#technologies)
 
 ## General info
 This project is simple Lorem ipsum dolor generator.
